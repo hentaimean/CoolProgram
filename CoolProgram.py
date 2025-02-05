@@ -1,14 +1,10 @@
 from PyQt5 import QtWidgets, QtCore, QtGui
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import *
-
 import sys, os
-
-#Начало
 from PyQt5.QtWidgets import QPushButton
 
 def resource_path(relative_path):
-    """ Get absolute path to resource, works for dev and for PyInstaller """
     base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
     return os.path.join(base_path, relative_path)
 
@@ -18,13 +14,13 @@ class IntroductionPage(QtWidgets.QWizardPage):
 
         font = QtGui.QFont()
         font.setFamily("Sitka")
-        font.setPointSize(15)
+        font.setPointSize(14)
         self.setFont(font)
 
-        self.label_0 = QtWidgets.QLabel("\n\n\n\n\n\n\n\nВступление \nПрограмма предназначена для оценки защищенности информационной системы Вашей компании \nОтметьте галочками пункты, которые соблюдены в Вашей организации, а в полях для ввода укажите оценки,\nкоторые у вас получились (дробные числа указывайте через точку)", self)
+        self.label_0 = QtWidgets.QLabel("\n\n\n\n\n\n\n\nВступление\nПрограмма предназначена для оценки защищенности информационной системы Вашей компании \nОтметьте галочками пункты, которые соблюдены в Вашей организации", self)
         self.label_0.setAlignment(Qt.AlignCenter)
-        self.label_1 = QtWidgets.QLabel("\n\n\n\n\n\n\nCoolProgram, 2021 г.", self)
-        self.label_1.setAlignment(Qt.AlignRight)
+        self.label_1 = QtWidgets.QLabel("\n\n\n\n\n\n\n\nCoolProgram, 2021-2024", self)
+        self.label_1.setAlignment(Qt.AlignCenter)
 
 
         self.layout = QtWidgets.QVBoxLayout()
@@ -56,8 +52,6 @@ class ClassesPage1(QtWidgets.QWizardPage):
         self.checkBox_2 = QtWidgets.QCheckBox('  Документарное определение правил предоставления (отзыва) и блокирования логического доступа')
         self.checkBox_3 = QtWidgets.QCheckBox('  Регистрация событий защиты информации, связанных с действиями, и контроль действий \n  эксплуатационного  персонала, обладающего правами по управлению логическим доступом')
         self.checkBox_4 = QtWidgets.QCheckBox('  Закрепление АРМ пользователей и эксплуатационного персонала за конкретными субъектами \n  логического доступа')
-        self.label_4 = QtWidgets.QLabel("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
-        self.label_5 = QtWidgets.QLabel('Оценка за подпроцесс: 0')
 
         self.layout = QtWidgets.QVBoxLayout()
         self.layout.addWidget(self.label_2)
@@ -66,8 +60,6 @@ class ClassesPage1(QtWidgets.QWizardPage):
         self.layout.addWidget(self.checkBox_2)
         self.layout.addWidget(self.checkBox_3)
         self.layout.addWidget(self.checkBox_4)
-        self.layout.addWidget(self.label_4)
-        self.layout.addWidget(self.label_5)
         self.setLayout(self.layout)
 
         self.performance()
@@ -86,12 +78,8 @@ class ClassesPage1(QtWidgets.QWizardPage):
                 a += 1
         mean = a / 4
 
-        if mean == 1:
-            self.label_5.setText('Оценка за подпроцесс: 1')
-        elif mean == 0:
-            self.label_5.setText('Оценка за подпроцесс: 0')
-        else:
-            self.label_5.setText('Оценка за подпроцесс: ' + str(mean))
+        global pp1
+        pp1 = mean
 
     def nextId(self):
         return Wizard.class4
@@ -115,8 +103,6 @@ class ClassesPage4(QtWidgets.QWizardPage):
         self.checkBox_6 = QtWidgets.QCheckBox('  Запрет на использование технологии аутентификации с сохранением аутентификационных \n  данных в открытом виде в СВТ')
         self.checkBox_7 = QtWidgets.QCheckBox('  Авторизация логического доступа к ресурсам доступа, в том числе АС')
         self.checkBox_8 = QtWidgets.QCheckBox('  Регистрация выполнения субъектами логического доступа ряда неуспешных последовательных \n  попыток аутентификации')
-        self.label_8 = QtWidgets.QLabel("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
-        self.label_9 = QtWidgets.QLabel('Оценка за подпроцесс: 0')
 
         self.layout = QtWidgets.QVBoxLayout()
         self.layout.addWidget(self.label_6)
@@ -125,8 +111,6 @@ class ClassesPage4(QtWidgets.QWizardPage):
         self.layout.addWidget(self.checkBox_6)
         self.layout.addWidget(self.checkBox_7)
         self.layout.addWidget(self.checkBox_8)
-        self.layout.addWidget(self.label_8)
-        self.layout.addWidget(self.label_9)
         self.setLayout(self.layout)
 
         self.performance()
@@ -145,12 +129,8 @@ class ClassesPage4(QtWidgets.QWizardPage):
                 a += 1
         mean = a / 4
 
-        if mean == 1:
-            self.label_9.setText('Оценка за подпроцесс: 1')
-        elif mean == 0:
-            self.label_9.setText('Оценка за подпроцесс: 0')
-        else:
-            self.label_9.setText('Оценка за подпроцесс: ' + str(mean))
+        global pp2
+        pp2 = mean
 
     def nextId(self):
         return Wizard.class8
@@ -174,8 +154,6 @@ class ClassesPage8(QtWidgets.QWizardPage):
         self.checkBox_10 = QtWidgets.QCheckBox('  Регистрация доступа к общедоступным объектам доступа с использованием средств \n  видеонаблюдения')
         self.checkBox_11 = QtWidgets.QCheckBox('  Контроль состояния общедоступных объектов доступа с целью выявлений несанкционированных \n  изменений в их аппаратном обеспечении и/или ПО')
         self.checkBox_12 = QtWidgets.QCheckBox('  Регистрация событий защиты информации, связанных с входом (выходом) в помещения \n  (из помещений), в которых  расположены объекты доступа')
-        self.label_12 = QtWidgets.QLabel("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
-        self.label_13 = QtWidgets.QLabel('Оценка за подпроцесс: 0')
 
         self.layout = QtWidgets.QVBoxLayout()
         self.layout.addWidget(self.label_10)
@@ -184,8 +162,6 @@ class ClassesPage8(QtWidgets.QWizardPage):
         self.layout.addWidget(self.checkBox_10)
         self.layout.addWidget(self.checkBox_11)
         self.layout.addWidget(self.checkBox_12)
-        self.layout.addWidget(self.label_12)
-        self.layout.addWidget(self.label_13)
         self.setLayout(self.layout)
 
         self.performance()
@@ -204,12 +180,8 @@ class ClassesPage8(QtWidgets.QWizardPage):
                 a += 1
         mean = a / 4
 
-        if mean == 1:
-            self.label_13.setText('Оценка за подпроцесс: 1')
-        elif mean == 0:
-            self.label_13.setText('Оценка за подпроцесс: 0')
-        else:
-            self.label_13.setText('Оценка за подпроцесс: ' + str(mean))
+        global pp3
+        pp3 = mean
 
     def nextId(self):
         return Wizard.class10
@@ -226,42 +198,13 @@ class ClassesPage10(QtWidgets.QWizardPage):
 
         self.label_14 = QtWidgets.QLabel("ПРОЦЕСС I «Обеспечение защиты информации при управлении доступом» \nПодпроцесс «Идентификация и учет ресурсов и объектов доступа»", self)
         self.label_14.setAlignment(Qt.AlignCenter)
-        self.label_15 = QtWidgets.QLabel("\nСодержание мер системы защиты информации:", self)
+        self.label_15 = QtWidgets.QLabel("\n\nСодержание мер системы защиты информации:", self)
         self.label_15.setAlignment(Qt.AlignBottom)
 
         self.checkBox_13 = QtWidgets.QCheckBox('  Учет созданных, используемых и/или эксплуатируемых ресурсов доступа')
         self.checkBox_14 = QtWidgets.QCheckBox('  Учет используемых и/или эксплуатируемых объектов доступа')
         self.checkBox_15 = QtWidgets.QCheckBox('  Учет эксплуатируемых общедоступных объектов доступа (в том числе банкоматов, \n  платежных терминалов)')
         self.checkBox_16 = QtWidgets.QCheckBox('  Регистрация событий защиты информации, связанных с подключением (регистрацией) \n  объектов доступа в вычислительных сетях финансовой организации')
-
-        self.label_17 = QtWidgets.QLabel('\nОценка за подпроцесс: 0')
-
-        self.label_80 = QtWidgets.QLabel('\nРасчет средней оценки за процесс:\n\nПодпроцесс 1: ')
-        self.text_1 = QtWidgets.QLineEdit(self)
-        self.text_1.setFixedWidth(130)
-        self.text_1.setMaxLength(4)
-        self.text_1.setStyleSheet("font: Sitka; font-size: 10")
-        self.label_81 = QtWidgets.QLabel('Подпроцесс 2: ')
-        self.text_2 = QtWidgets.QLineEdit(self)
-        self.text_2.setFixedWidth(130)
-        self.text_2.setMaxLength(4)
-        self.text_2.setStyleSheet("font: Sitka; font-size: 10")
-        self.label_82 = QtWidgets.QLabel('Подпроцесс 3: ')
-        self.text_3 = QtWidgets.QLineEdit(self)
-        self.text_3.setFixedWidth(130)
-        self.text_3.setMaxLength(4)
-        self.text_3.setStyleSheet("font: Sitka; font-size: 10")
-        self.label_83 = QtWidgets.QLabel('Подпроцесс 4: ')
-        self.text_4 = QtWidgets.QLineEdit(self)
-        self.text_4.setFixedWidth(130)
-        self.text_4.setMaxLength(4)
-        self.text_4.setStyleSheet("font: Sitka; font-size: 10")
-        self.button = QPushButton('Показать', self)
-        self.button.setFixedWidth(130)
-        self.button.setFixedHeight(22)
-        self.button.setStyleSheet("border: 1px solid gray;")
-
-        self.label_res = QtWidgets.QLabel('\n\nСредняя оценка за Процесс I: ')
 
         self.layout = QtWidgets.QVBoxLayout()
         self.layout.addWidget(self.label_14)
@@ -270,22 +213,10 @@ class ClassesPage10(QtWidgets.QWizardPage):
         self.layout.addWidget(self.checkBox_14)
         self.layout.addWidget(self.checkBox_15)
         self.layout.addWidget(self.checkBox_16)
-        self.layout.addWidget(self.label_17)
-        self.layout.addWidget(self.label_80)
-        self.layout.addWidget(self.text_1)
-        self.layout.addWidget(self.label_81)
-        self.layout.addWidget(self.text_2)
-        self.layout.addWidget(self.label_82)
-        self.layout.addWidget(self.text_3)
-        self.layout.addWidget(self.label_83)
-        self.layout.addWidget(self.text_4)
-        self.layout.addWidget(self.button)
-        self.layout.addWidget(self.label_res)
         self.setLayout(self.layout)
 
         self.performance()
         self.listCheckBox = [self.checkBox_13, self.checkBox_14, self.checkBox_15, self.checkBox_16]
-        self.button.clicked.connect(self.on_click)
 
     def performance(self):
         self.checkBox_13.stateChanged.connect(self.check)
@@ -300,30 +231,13 @@ class ClassesPage10(QtWidgets.QWizardPage):
                 a += 1
         mean = a / 4
 
-        if mean == 1:
-            self.label_17.setText('\nОценка за подпроцесс: 1')
-        elif mean == 0:
-            self.label_17.setText('\nОценка за подпроцесс: 0')
-        else:
-            self.label_17.setText('\nОценка за подпроцесс: ' + str(mean))
-
-    def on_click(self):
-        value_1 = self.text_1.text()
-        value_2 = self.text_2.text()
-        value_3 = self.text_3.text()
-        value_4 = self.text_4.text()
-
-        res = (float(value_1) + float(value_2) + float(value_3) + float(value_4)) / 4
-        if res > 1 or res < 0:
-            self.label_res.setText('\n\nОшибка ввода!')
-        elif res == 1:
-            self.label_res.setText('\n\nСредняя оценка за Процесс I: 1')
-        elif res == 0:
-            self.label_res.setText('\n\nСредняя оценка за Процесс I: 0')
-        else:
-            self.label_res.setText('\n\nСредняя оценка за Процесс I: ' + str(res))
+        global pp4
+        pp4 = mean
 
     def nextId(self):
+        global res1
+        res1 = (float(pp1) + float(pp2) + float(pp3) + float(pp4)) / 4
+
         return Wizard.class11
 
 #Процесс 2
@@ -347,8 +261,6 @@ class ClassesPage11(QtWidgets.QWizardPage):
         self.checkBox_18 = QtWidgets.QCheckBox('  Реализация запрета сетевого взаимодействия сегмента разработки и тестирования и иных внутренних вычислительных сетей \n  финансовой организации по инициативе сегмента разработки и тестирования')
         self.checkBox_19 = QtWidgets.QCheckBox('  Контроль содержимого информации при ее переносе из сегментов или в сегменты контуров безопасности с использованием \n  переносных (отчуждаемых) носителей информации')
         self.checkBox_20 = QtWidgets.QCheckBox('  Реализация сетевого взаимодействия внутренних вычислительных сетей финансовой организации и сети Интернет через \n  ограниченное количество контролируемых точек доступа')
-        self.label_20 = QtWidgets.QLabel("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
-        self.label_21 = QtWidgets.QLabel('Оценка за подпроцесс: 0')
 
         self.layout = QtWidgets.QVBoxLayout()
         self.layout.addWidget(self.label_18)
@@ -357,8 +269,6 @@ class ClassesPage11(QtWidgets.QWizardPage):
         self.layout.addWidget(self.checkBox_18)
         self.layout.addWidget(self.checkBox_19)
         self.layout.addWidget(self.checkBox_20)
-        self.layout.addWidget(self.label_20)
-        self.layout.addWidget(self.label_21)
         self.setLayout(self.layout)
 
         self.performance()
@@ -377,12 +287,8 @@ class ClassesPage11(QtWidgets.QWizardPage):
                 a += 1
         mean = a / 4
 
-        if mean == 1:
-            self.label_21.setText('Оценка за подпроцесс: 1')
-        elif mean == 0:
-            self.label_21.setText('Оценка за подпроцесс: 0')
-        else:
-            self.label_21.setText('Оценка за подпроцесс: ' + str(mean))
+        global p2p1
+        p2p1 = mean
 
     def nextId(self):
         return Wizard.class12
@@ -406,9 +312,7 @@ class ClassesPage12(QtWidgets.QWizardPage):
         self.checkBox_22 = QtWidgets.QCheckBox('  Контроль отсутствия (выявление) аномальной сетевой активности, связанной с возможным несанкционированным \n  удаленным доступом')
         self.checkBox_23 = QtWidgets.QCheckBox('  Блокирование атак типа «отказ в обслуживании» в масштабе времени, близком к реальному')
         self.checkBox_24 = QtWidgets.QCheckBox('  Контроль и обеспечение возможности блокировки нежелательных сообщений электронной почты (SPAM)')
-        self.label_24 = QtWidgets.QLabel("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
-        self.label_25 = QtWidgets.QLabel('Оценка за подпроцесс: 0')
-
+    
         self.layout = QtWidgets.QVBoxLayout()
         self.layout.addWidget(self.label_22)
         self.layout.addWidget(self.label_23)
@@ -416,8 +320,6 @@ class ClassesPage12(QtWidgets.QWizardPage):
         self.layout.addWidget(self.checkBox_22)
         self.layout.addWidget(self.checkBox_23)
         self.layout.addWidget(self.checkBox_24)
-        self.layout.addWidget(self.label_24)
-        self.layout.addWidget(self.label_25)
         self.setLayout(self.layout)
 
         self.performance()
@@ -436,12 +338,8 @@ class ClassesPage12(QtWidgets.QWizardPage):
                 a += 1
         mean = a / 4
 
-        if mean == 1:
-            self.label_25.setText('Оценка за подпроцесс: 1')
-        elif mean == 0:
-            self.label_25.setText('Оценка за подпроцесс: 0')
-        else:
-            self.label_25.setText('Оценка за подпроцесс: ' + str(mean))
+        global p2p2
+        p2p2 = mean
 
     def nextId(self):
         return Wizard.class13
@@ -463,16 +361,12 @@ class ClassesPage13(QtWidgets.QWizardPage):
 
         self.checkBox_25 = QtWidgets.QCheckBox('  Применение сетевых протоколов, обеспечивающих защиту подлинности сетевого соединения, контроль целостности \n  сетевого взаимодействия и реализацию технологии двухсторонней аутентификации при осуществлении логического \n  доступа с использованием телекоммуникационных каналов и/или линий связи, не контролируемых финансовой организацией')
         self.checkBox_26 = QtWidgets.QCheckBox('  Реализация защиты информации от раскрытия и модификации, применение двухсторонней аутентификации при ее \n  передаче с использованием сети Интернет, телекоммуникационных каналов и/или линий связи, не контролируемых \n  финансовой организацией')
-        self.label_28 = QtWidgets.QLabel("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
-        self.label_29 = QtWidgets.QLabel('Оценка за подпроцесс: 0')
-
+        
         self.layout = QtWidgets.QVBoxLayout()
         self.layout.addWidget(self.label_26)
         self.layout.addWidget(self.label_27)
         self.layout.addWidget(self.checkBox_25)
         self.layout.addWidget(self.checkBox_26)
-        self.layout.addWidget(self.label_28)
-        self.layout.addWidget(self.label_29)
         self.setLayout(self.layout)
 
         self.performance()
@@ -489,12 +383,8 @@ class ClassesPage13(QtWidgets.QWizardPage):
                 a += 1
         mean = a / 2
 
-        if mean == 1:
-            self.label_29.setText('Оценка за подпроцесс: 1')
-        elif mean == 0:
-            self.label_29.setText('Оценка за подпроцесс: 0')
-        else:
-            self.label_29.setText('Оценка за подпроцесс: ' + str(mean))
+        global p2p3
+        p2p3 = mean
 
     def nextId(self):
         return Wizard.class14
@@ -511,42 +401,13 @@ class ClassesPage14(QtWidgets.QWizardPage):
 
         self.label_30 = QtWidgets.QLabel("ПРОЦЕСС II «Обеспечение защиты вычислительных сетей» \nПодпроцесс «Защита беспроводных сетей»", self)
         self.label_30.setAlignment(Qt.AlignCenter)
-        self.label_31 = QtWidgets.QLabel("\nСодержание мер системы защиты информации:", self)
+        self.label_31 = QtWidgets.QLabel("\n\nСодержание мер системы защиты информации:", self)
         self.label_31.setAlignment(Qt.AlignBottom)
 
         self.checkBox_27 = QtWidgets.QCheckBox('  Размещение технических средств, реализующих функции беспроводного соединения, в выделенных сегментах \n  вычислительных сетей финансовой организации')
         self.checkBox_28 = QtWidgets.QCheckBox('  Межсетевое экранирование внутренних вычислительных сетей финансовой организации и сегментов вычисленных \n  сетей, включая фильтрацию данных на сетевом и прикладном уровнях семиуровневой стандартной модели \n  взаимодействия открытых систем')
         self.checkBox_29 = QtWidgets.QCheckBox('  Блокирование попыток подключения к беспроводным точкам доступа с незарегистрированных устройств доступа, \n  в том числе из-за пределов зданий и сооружений финансовой организации')
         self.checkBox_30 = QtWidgets.QCheckBox('  Регистрация попыток подключения к беспроводным точкам доступа с незарегистрированных устройств доступа, \n  в том числе из-за пределов финансовой организации')
-
-        self.label_32 = QtWidgets.QLabel('Оценка за подпроцесс: 0')
-
-        self.label_33 = QtWidgets.QLabel('\nРасчет средней оценки за процесс:\nПодпроцесс 1: ')
-        self.text_1 = QtWidgets.QLineEdit(self)
-        self.text_1.setFixedWidth(130)
-        self.text_1.setMaxLength(4)
-        self.text_1.setStyleSheet("font: Sitka; font-size: 10")
-        self.label_34 = QtWidgets.QLabel('Подпроцесс 2: ')
-        self.text_2 = QtWidgets.QLineEdit(self)
-        self.text_2.setFixedWidth(130)
-        self.text_2.setMaxLength(4)
-        self.text_2.setStyleSheet("font: Sitka; font-size: 10")
-        self.label_35 = QtWidgets.QLabel('Подпроцесс 3: ')
-        self.text_3 = QtWidgets.QLineEdit(self)
-        self.text_3.setFixedWidth(130)
-        self.text_3.setMaxLength(4)
-        self.text_3.setStyleSheet("font: Sitka; font-size: 10")
-        self.label_36 = QtWidgets.QLabel('Подпроцесс 4: ')
-        self.text_4 = QtWidgets.QLineEdit(self)
-        self.text_4.setFixedWidth(130)
-        self.text_4.setMaxLength(4)
-        self.text_4.setStyleSheet("font: Sitka; font-size: 10")
-        self.button = QPushButton('Показать', self)
-        self.button.setFixedWidth(130)
-        self.button.setFixedHeight(22)
-        self.button.setStyleSheet("border: 1px solid gray;")
-
-        self.label_res = QtWidgets.QLabel('Средняя оценка за Процесс II: ')
 
         self.layout = QtWidgets.QVBoxLayout()
         self.layout.addWidget(self.label_30)
@@ -555,22 +416,10 @@ class ClassesPage14(QtWidgets.QWizardPage):
         self.layout.addWidget(self.checkBox_28)
         self.layout.addWidget(self.checkBox_29)
         self.layout.addWidget(self.checkBox_30)
-        self.layout.addWidget(self.label_32)
-        self.layout.addWidget(self.label_33)
-        self.layout.addWidget(self.text_1)
-        self.layout.addWidget(self.label_34)
-        self.layout.addWidget(self.text_2)
-        self.layout.addWidget(self.label_35)
-        self.layout.addWidget(self.text_3)
-        self.layout.addWidget(self.label_36)
-        self.layout.addWidget(self.text_4)
-        self.layout.addWidget(self.button)
-        self.layout.addWidget(self.label_res)
         self.setLayout(self.layout)
 
         self.performance()
         self.listCheckBox = [self.checkBox_27, self.checkBox_28, self.checkBox_29, self.checkBox_30]
-        self.button.clicked.connect(self.on_click)
 
     def performance(self):
         self.checkBox_27.stateChanged.connect(self.check)
@@ -585,30 +434,13 @@ class ClassesPage14(QtWidgets.QWizardPage):
                 a += 1
         mean = a / 4
 
-        if mean == 1:
-            self.label_32.setText('Оценка за подпроцесс: 1')
-        elif mean == 0:
-            self.label_32.setText('Оценка за подпроцесс: 0')
-        else:
-            self.label_32.setText('Оценка за подпроцесс: ' + str(mean))
-
-    def on_click(self):
-        value_1 = self.text_1.text()
-        value_2 = self.text_2.text()
-        value_3 = self.text_3.text()
-        value_4 = self.text_4.text()
-
-        res = (float(value_1) + float(value_2) + float(value_3) + float(value_4)) / 4
-        if res > 1 or res < 0:
-            self.label_res.setText('Ошибка ввода!')
-        elif res == 1:
-            self.label_res.setText('Средняя оценка за Процесс II: 1')
-        elif res == 0:
-            self.label_res.setText('Средняя оценка за Процесс II: 0')
-        else:
-            self.label_res.setText('Средняя оценка за Процесс II: ' + str(res))
-
+        global p2p4
+        p2p4 = mean
+        
     def nextId(self):
+        global res2
+        res2 = (float(p2p1) + float(p2p2) + float(p2p3) + float(p2p4)) / 4
+        
         return Wizard.class15
 
 #Процесс 3
@@ -631,9 +463,7 @@ class ClassesPage15(QtWidgets.QWizardPage):
         self.checkBox_33 = QtWidgets.QCheckBox('  Обеспечение возможности восстановления эталонных копий ПО АС, ПО средств и систем защиты информации, системного\n  ПО в случаях нештатных ситуаций')
         self.checkBox_34 = QtWidgets.QCheckBox('  Контроль состава ПО АРМ пользователей и эксплуатационного персонала, запускаемого при загрузке операционной системы')
         self.checkBox_35 = QtWidgets.QCheckBox('  Регистрация результатов выполнения операций по контролю целостности и достоверности источников получения при\n  распространении и/или обновлении ПО АС, ПО средств и систем защиты информации, системного ПО')
-        self.label_36 = QtWidgets.QLabel("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
-        self.label_37 = QtWidgets.QLabel('Оценка за процесс: 0')
-
+       
         self.layout = QtWidgets.QVBoxLayout()
         self.layout.addWidget(self.label_34)
         self.layout.addWidget(self.label_35)
@@ -642,8 +472,6 @@ class ClassesPage15(QtWidgets.QWizardPage):
         self.layout.addWidget(self.checkBox_33)
         self.layout.addWidget(self.checkBox_34)
         self.layout.addWidget(self.checkBox_35)
-        self.layout.addWidget(self.label_36)
-        self.layout.addWidget(self.label_37)
         self.setLayout(self.layout)
 
         self.performance()
@@ -663,12 +491,8 @@ class ClassesPage15(QtWidgets.QWizardPage):
                 a += 1
         mean = a / 5
 
-        if mean == 1:
-            self.label_37.setText('Оценка за процесс: 1')
-        elif mean == 0:
-            self.label_37.setText('Оценка за процесс: 0')
-        else:
-            self.label_37.setText('Оценка за процесс: ' + str(mean))
+        global res3
+        res3 = mean
 
     def nextId(self):
         return Wizard.class16
@@ -693,9 +517,7 @@ class ClassesPage16(QtWidgets.QWizardPage):
         self.checkBox_38 = QtWidgets.QCheckBox('  Контроль отключения и своевременного обновления средств защиты от вредоносного кода')
         self.checkBox_39 = QtWidgets.QCheckBox('  Регистрация операций по проведению проверок на отсутствие вредоносного кода')
         self.checkBox_40 = QtWidgets.QCheckBox('  Регистрация нарушений целостности программных компонентов средств защиты от вредоносного кода')
-        self.label_40 = QtWidgets.QLabel("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
-        self.label_41 = QtWidgets.QLabel('Оценка за процесс: 0')
-
+        
         self.layout = QtWidgets.QVBoxLayout()
         self.layout.addWidget(self.label_38)
         self.layout.addWidget(self.label_39)
@@ -704,8 +526,6 @@ class ClassesPage16(QtWidgets.QWizardPage):
         self.layout.addWidget(self.checkBox_38)
         self.layout.addWidget(self.checkBox_39)
         self.layout.addWidget(self.checkBox_40)
-        self.layout.addWidget(self.label_40)
-        self.layout.addWidget(self.label_41)
         self.setLayout(self.layout)
 
         self.performance()
@@ -725,12 +545,8 @@ class ClassesPage16(QtWidgets.QWizardPage):
                 a += 1
         mean = a / 5
 
-        if mean == 1:
-            self.label_41.setText('Оценка за процесс: 1')
-        elif mean == 0:
-            self.label_41.setText('Оценка за процесс: 0')
-        else:
-            self.label_41.setText('Оценка за процесс: ' + str(mean))
+        global res4
+        res4 = mean
 
     def nextId(self):
         return Wizard.class17
@@ -755,9 +571,7 @@ class ClassesPage17(QtWidgets.QWizardPage):
         self.checkBox_43 = QtWidgets.QCheckBox('  Ограничение на размеры файлов данных, передаваемых в качестве вложений в сообщения электронной почты')
         self.checkBox_44 = QtWidgets.QCheckBox('  Шифрование информации конфиденциального характера при ее хранении на МНИ, выносимых за пределы финансовой\n  организации')
         self.checkBox_45 = QtWidgets.QCheckBox('  Регистрация операций, связанных с осуществлением доступа работниками финансовой организации к ресурсам сети Интернет')
-        self.label_44 = QtWidgets.QLabel("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
-        self.label_45 = QtWidgets.QLabel('Оценка за процесс: 0')
-
+        
         self.layout = QtWidgets.QVBoxLayout()
         self.layout.addWidget(self.label_42)
         self.layout.addWidget(self.label_43)
@@ -766,8 +580,6 @@ class ClassesPage17(QtWidgets.QWizardPage):
         self.layout.addWidget(self.checkBox_43)
         self.layout.addWidget(self.checkBox_44)
         self.layout.addWidget(self.checkBox_45)
-        self.layout.addWidget(self.label_44)
-        self.layout.addWidget(self.label_45)
         self.setLayout(self.layout)
 
         self.performance()
@@ -787,12 +599,8 @@ class ClassesPage17(QtWidgets.QWizardPage):
                 a += 1
         mean = a / 5
 
-        if mean == 1:
-            self.label_45.setText('Оценка за процесс: 1')
-        elif mean == 0:
-            self.label_45.setText('Оценка за процесс: 0')
-        else:
-            self.label_45.setText('Оценка за процесс: ' + str(mean))
+        global res5
+        res5 = mean
 
     def nextId(self):
         return Wizard.class18
@@ -817,9 +625,7 @@ class ClassesPage18(QtWidgets.QWizardPage):
         self.checkBox_47 = QtWidgets.QCheckBox('  Резервирование необходимого объема памяти для хранения данных регистрации о событиях защиты информации')
         self.checkBox_48 = QtWidgets.QCheckBox('  Обеспечение возможности определения состава действий и/или операций конкретного субъекта доступа')
         self.checkBox_49 = QtWidgets.QCheckBox('  Регистрация нарушений и сбоев в формировании и сборе данных о событиях защиты информации')
-        self.label_48 = QtWidgets.QLabel("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
-        self.label_49 = QtWidgets.QLabel('Оценка за подпроцесс: 0')
-
+        
         self.layout = QtWidgets.QVBoxLayout()
         self.layout.addWidget(self.label_46)
         self.layout.addWidget(self.label_47)
@@ -827,8 +633,6 @@ class ClassesPage18(QtWidgets.QWizardPage):
         self.layout.addWidget(self.checkBox_47)
         self.layout.addWidget(self.checkBox_48)
         self.layout.addWidget(self.checkBox_49)
-        self.layout.addWidget(self.label_48)
-        self.layout.addWidget(self.label_49)
         self.setLayout(self.layout)
 
         self.performance()
@@ -847,12 +651,8 @@ class ClassesPage18(QtWidgets.QWizardPage):
                 a += 1
         mean = a / 4
 
-        if mean == 1:
-            self.label_49.setText('Оценка за подпроцесс: 1')
-        elif mean == 0:
-            self.label_49.setText('Оценка за подпроцесс: 0')
-        else:
-            self.label_49.setText('Оценка за подпроцесс: ' + str(mean))
+        global p6p1
+        p6p1 = mean
 
     def nextId(self):
         return Wizard.class19
@@ -877,25 +677,6 @@ class ClassesPage19(QtWidgets.QWizardPage):
         self.checkBox_52 = QtWidgets.QCheckBox('  Реализация защиты информации об инцидентах защиты информации от НСД, обеспечение целостности и доступности\n  указанной информации')
         self.checkBox_53 = QtWidgets.QCheckBox('  Регистрация доступа к информации об инцидентах защиты информации')
 
-        self.label_1 = QtWidgets.QLabel('\nОценка за подпроцесс: 0')
-
-        self.label_2 = QtWidgets.QLabel('\n\n\n\nРасчет средней оценки за процесс:\n\nПодпроцесс 1: ')
-        self.text_1 = QtWidgets.QLineEdit(self)
-        self.text_1.setFixedWidth(130)
-        self.text_1.setMaxLength(4)
-        self.text_1.setStyleSheet("font: Sitka; font-size: 10")
-        self.label_3 = QtWidgets.QLabel('Подпроцесс 2: ')
-        self.text_2 = QtWidgets.QLineEdit(self)
-        self.text_2.setFixedWidth(130)
-        self.text_2.setMaxLength(4)
-        self.text_2.setStyleSheet("font: Sitka; font-size: 10")
-        self.button = QPushButton('Показать', self)
-        self.button.setFixedWidth(130)
-        self.button.setFixedHeight(22)
-        self.button.setStyleSheet("border: 1px solid gray;")
-
-        self.label_res = QtWidgets.QLabel('\n\n\n\nСредняя оценка за Процесс VI: ')
-
         self.layout = QtWidgets.QVBoxLayout()
         self.layout.addWidget(self.label_50)
         self.layout.addWidget(self.label_51)
@@ -903,18 +684,10 @@ class ClassesPage19(QtWidgets.QWizardPage):
         self.layout.addWidget(self.checkBox_51)
         self.layout.addWidget(self.checkBox_52)
         self.layout.addWidget(self.checkBox_53)
-        self.layout.addWidget(self.label_1)
-        self.layout.addWidget(self.label_2)
-        self.layout.addWidget(self.text_1)
-        self.layout.addWidget(self.label_3)
-        self.layout.addWidget(self.text_2)
-        self.layout.addWidget(self.button)
-        self.layout.addWidget(self.label_res)
         self.setLayout(self.layout)
 
         self.performance()
         self.listCheckBox = [self.checkBox_50, self.checkBox_51, self.checkBox_52, self.checkBox_53]
-        self.button.clicked.connect(self.on_click)
 
     def performance(self):
         self.checkBox_50.stateChanged.connect(self.check)
@@ -929,28 +702,13 @@ class ClassesPage19(QtWidgets.QWizardPage):
                 a += 1
         mean = a / 4
 
-        if mean == 1:
-            self.label_1.setText('\nОценка за подпроцесс: 1')
-        elif mean == 0:
-            self.label_1.setText('\nОценка за подпроцесс: 0')
-        else:
-            self.label_1.setText('\nОценка за подпроцесс: ' + str(mean))
-
-    def on_click(self):
-        value_1 = self.text_1.text()
-        value_2 = self.text_2.text()
-
-        res = (float(value_1) + float(value_2)) / 2
-        if res > 1 or res < 0:
-            self.label_res.setText('\n\n\n\nОшибка ввода!')
-        elif res == 1:
-            self.label_res.setText('\n\n\n\nСредняя оценка за Процесс VI: 1')
-        elif res == 0:
-            self.label_res.setText('\n\n\n\nСредняя оценка за Процесс VI: 0')
-        else:
-            self.label_res.setText('\n\n\n\nСредняя оценка за Процесс VI: ' + str(res))
-
+        global p6p2
+        p6p2 = mean
+        
     def nextId(self):
+        global res6
+        res6 = (float(p6p1) + float(p6p2)) / 2
+
         return Wizard.class20
 
 #Процесс 7
@@ -973,9 +731,7 @@ class ClassesPage20(QtWidgets.QWizardPage):
         self.checkBox_56 = QtWidgets.QCheckBox('  Регламентация и контроль выполнения:\n  - операций в рамках жизненного цикла базовых образов виртуальных машин;\n  - операций по копированию образов виртуальных машин')
         self.checkBox_57 = QtWidgets.QCheckBox('  Регистрация операций, связанных с запуском (остановкой) виртуальных машин')
         self.checkBox_58 = QtWidgets.QCheckBox('  Регистрация операций, связанных с изменением настроек технических мер защиты информации, используемых для\n  обеспечения защиты виртуальных машин')
-        self.label_56 = QtWidgets.QLabel("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
-        self.label_57 = QtWidgets.QLabel('Оценка за процесс: 0')
-
+        
         self.layout = QtWidgets.QVBoxLayout()
         self.layout.addWidget(self.label_54)
         self.layout.addWidget(self.label_55)
@@ -984,8 +740,6 @@ class ClassesPage20(QtWidgets.QWizardPage):
         self.layout.addWidget(self.checkBox_56)
         self.layout.addWidget(self.checkBox_57)
         self.layout.addWidget(self.checkBox_58)
-        self.layout.addWidget(self.label_56)
-        self.layout.addWidget(self.label_57)
         self.setLayout(self.layout)
 
         self.performance()
@@ -1005,12 +759,8 @@ class ClassesPage20(QtWidgets.QWizardPage):
                 a += 1
         mean = a / 5
 
-        if mean == 1:
-            self.label_57.setText('Оценка за процесс: 1')
-        elif mean == 0:
-            self.label_57.setText('Оценка за процесс: 0')
-        else:
-            self.label_57.setText('Оценка за процесс: ' + str(mean))
+        global res7
+        res7 = mean
 
     def nextId(self):
         return Wizard.class21
@@ -1035,9 +785,7 @@ class ClassesPage21(QtWidgets.QWizardPage):
         self.checkBox_61 = QtWidgets.QCheckBox('  Обеспечение защиты мобильных (переносных) устройств от воздействий вредоносного кода')
         self.checkBox_62 = QtWidgets.QCheckBox('  Контентный анализ информации, передаваемой мобильными (переносными) устройствами в сеть Интернет с использованием\n  информационной инфраструктуры финансовой организации')
         self.checkBox_63 = QtWidgets.QCheckBox('  Реализация и контроль информационного взаимодействия внутренних вычислительных сетей финансовой организации и\n  мобильных (переносных) устройств в соответствии с установленными правилами и протоколами сетевого взаимодействия')
-        self.label_60 = QtWidgets.QLabel("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
-        self.label_61 = QtWidgets.QLabel('Оценка за процесс: 0')
-
+        
         self.layout = QtWidgets.QVBoxLayout()
         self.layout.addWidget(self.label_58)
         self.layout.addWidget(self.label_59)
@@ -1046,8 +794,6 @@ class ClassesPage21(QtWidgets.QWizardPage):
         self.layout.addWidget(self.checkBox_61)
         self.layout.addWidget(self.checkBox_62)
         self.layout.addWidget(self.checkBox_63)
-        self.layout.addWidget(self.label_60)
-        self.layout.addWidget(self.label_61)
         self.setLayout(self.layout)
 
         self.performance()
@@ -1067,12 +813,8 @@ class ClassesPage21(QtWidgets.QWizardPage):
                 a += 1
         mean = a / 5
 
-        if mean == 1:
-            self.label_61.setText('Оценка за процесс: 1')
-        elif mean == 0:
-            self.label_61.setText('Оценка за процесс: 0')
-        else:
-            self.label_61.setText('Оценка за процесс: ' + str(mean))
+        global res8
+        res8 = mean
 
     def nextId(self):
         return Wizard.classDirection1
@@ -1096,9 +838,7 @@ class ClassesDirection1(QtWidgets.QWizardPage):
         self.checkBox_65 = QtWidgets.QCheckBox('  Документарное определение состава (с указанием соответствия настоящему стандарту) и содержания организационных \n  мер защиты информации, выбранных финансовой организацией и реализуемых в рамках процесса системы защиты\n  информации')
         self.checkBox_66 = QtWidgets.QCheckBox('  Документарное определение порядка применения организационных мер защиты информации, реализуемых в рамках \n  процесса системы защиты информации')
         self.checkBox_67 = QtWidgets.QCheckBox('  Документарное определение состава (с указанием соответствия настоящему стандарту) и содержания технических мер \n  защиты информации, выбранных финансовой организацией и реализуемых в рамках процесса системы защиты информации')
-        self.label_64 = QtWidgets.QLabel("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
-        self.label_65 = QtWidgets.QLabel('Оценка за направление: 0')
-
+        
         self.layout = QtWidgets.QVBoxLayout()
         self.layout.addWidget(self.label_62)
         self.layout.addWidget(self.label_63)
@@ -1106,8 +846,6 @@ class ClassesDirection1(QtWidgets.QWizardPage):
         self.layout.addWidget(self.checkBox_65)
         self.layout.addWidget(self.checkBox_66)
         self.layout.addWidget(self.checkBox_67)
-        self.layout.addWidget(self.label_64)
-        self.layout.addWidget(self.label_65)
         self.setLayout(self.layout)
 
         self.performance()
@@ -1126,12 +864,8 @@ class ClassesDirection1(QtWidgets.QWizardPage):
                 a += 1
         mean = a / 4
 
-        if mean == 1:
-            self.label_65.setText('Оценка за направление: 1')
-        elif mean == 0:
-            self.label_65.setText('Оценка за направление: 0')
-        else:
-            self.label_65.setText('Оценка за направление: ' + str(mean))
+        global n1
+        n1 = mean
 
     def nextId(self):
         return Wizard.classDirection2
@@ -1155,9 +889,7 @@ class ClassesDirection2(QtWidgets.QWizardPage):
         self.checkBox_69 = QtWidgets.QCheckBox('  Определение лиц, которым разрешены действия по внесению изменений в конфигурацию информационной инфраструктуры')
         self.checkBox_70 = QtWidgets.QCheckBox('  Обеспечение возможности сопровождения технических мер защиты информации в течение всего срока их использования')
         self.checkBox_71 = QtWidgets.QCheckBox('  Применение сертифицированных по требованиям безопасности информации средств защиты информации не ниже 6 класса')
-        self.label_68 = QtWidgets.QLabel("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
-        self.label_69 = QtWidgets.QLabel('Оценка за направление: 0')
-
+        
         self.layout = QtWidgets.QVBoxLayout()
         self.layout.addWidget(self.label_66)
         self.layout.addWidget(self.label_67)
@@ -1165,8 +897,6 @@ class ClassesDirection2(QtWidgets.QWizardPage):
         self.layout.addWidget(self.checkBox_69)
         self.layout.addWidget(self.checkBox_70)
         self.layout.addWidget(self.checkBox_71)
-        self.layout.addWidget(self.label_68)
-        self.layout.addWidget(self.label_69)
         self.setLayout(self.layout)
 
         self.performance()
@@ -1185,12 +915,8 @@ class ClassesDirection2(QtWidgets.QWizardPage):
                 a += 1
         mean = a / 4
 
-        if mean == 1:
-            self.label_69.setText('Оценка за направление: 1')
-        elif mean == 0:
-            self.label_69.setText('Оценка за направление: 0')
-        else:
-            self.label_69.setText('Оценка за направление: ' + str(mean))
+        global n2
+        n2 = mean
 
     def nextId(self):
         return Wizard.classDirection3
@@ -1214,9 +940,7 @@ class ClassesDirection3(QtWidgets.QWizardPage):
         self.checkBox_73 = QtWidgets.QCheckBox('  Проведение проверок знаний работников финансовой организации в части применения мер защиты информации в рамках \n  процесса системы защиты информации')
         self.checkBox_74 = QtWidgets.QCheckBox('  Регистрация операций по установке и/или обновлению ПО технических средств защиты информации')
         self.checkBox_75 = QtWidgets.QCheckBox('  Регистрация сбоев (отказов) технических мер защиты информации')
-        self.label_72 = QtWidgets.QLabel("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
-        self.label_73 = QtWidgets.QLabel('Оценка за направление: 0')
-
+        
         self.layout = QtWidgets.QVBoxLayout()
         self.layout.addWidget(self.label_70)
         self.layout.addWidget(self.label_71)
@@ -1224,8 +948,6 @@ class ClassesDirection3(QtWidgets.QWizardPage):
         self.layout.addWidget(self.checkBox_73)
         self.layout.addWidget(self.checkBox_74)
         self.layout.addWidget(self.checkBox_75)
-        self.layout.addWidget(self.label_72)
-        self.layout.addWidget(self.label_73)
         self.setLayout(self.layout)
 
         self.performance()
@@ -1244,12 +966,8 @@ class ClassesDirection3(QtWidgets.QWizardPage):
                 a += 1
         mean = a / 4
 
-        if mean == 1:
-            self.label_73.setText('Оценка за направление: 1')
-        elif mean == 0:
-            self.label_73.setText('Оценка за направление: 0')
-        else:
-            self.label_73.setText('Оценка за направление: ' + str(mean))
+        global n3
+        n3 = mean
 
     def nextId(self):
         return Wizard.classDirection4
@@ -1273,9 +991,7 @@ class ClassesDirection4(QtWidgets.QWizardPage):
         self.checkBox_77 = QtWidgets.QCheckBox('  Проведение и фиксация результатов (свидетельств) анализа необходимости совершенствования процесса системы защиты \n  информации в случаях изменения политики финансовой организации в отношении: \n  - области применения процесса системы защиты информации; \n  - основных принципов и приоритетов в реализации процесса системы защиты информации; \n  - целевых показателей величины допустимого остаточного операционного риска (риск-аппетита), связанного с обеспечением \n  безопасности информации')
         self.checkBox_78 = QtWidgets.QCheckBox('  Проведение и фиксация результатов (свидетельств) анализа необходимости совершенствования процесса системы защиты \n  информации в случаях: \n  - изменений требований к защите информации, определенных правилами платежной системы; \n  - изменений, внесенных в законодательство Российской Федерации, в том числе нормативные акты Банка России')
         self.checkBox_79 = QtWidgets.QCheckBox('  Фиксация решений о проведении совершенствования процесса системы защиты информации в виде корректирующих или \n  превентивных действий, например: \n  - пересмотр области применения процесса системы защиты информации; \n  - пересмотр состава и содержания организационных мер защиты информации, применяемых в рамках процесса системы \n  защиты информации; \n  - пересмотр состава технических мер защиты информации, применяемых в рамках процесса системы защиты информации')
-        self.label_76 = QtWidgets.QLabel("\n")
-        self.label_77 = QtWidgets.QLabel('Оценка за направление: 0')
-
+        
         self.layout = QtWidgets.QVBoxLayout()
         self.layout.addWidget(self.label_74)
         self.layout.addWidget(self.label_75)
@@ -1283,8 +999,6 @@ class ClassesDirection4(QtWidgets.QWizardPage):
         self.layout.addWidget(self.checkBox_77)
         self.layout.addWidget(self.checkBox_78)
         self.layout.addWidget(self.checkBox_79)
-        self.layout.addWidget(self.label_76)
-        self.layout.addWidget(self.label_77)
         self.setLayout(self.layout)
 
         self.performance()
@@ -1303,95 +1017,20 @@ class ClassesDirection4(QtWidgets.QWizardPage):
                 a += 1
         mean = a / 4
 
-        if mean == 1:
-            self.label_77.setText('Оценка за направление: 1')
-        elif mean == 0:
-            self.label_77.setText('Оценка за направление: 0')
-        else:
-            self.label_77.setText('Оценка за направление: ' + str(mean))
+        global n4
+        n4 = mean
 
     def nextId(self):
-        return Wizard.classLastPage1
+        global res9
+        res9 = (float(n1) + float(n2) + float(n3) + float(n4)) / 4
 
-# расчет средней оценки для направлений
-class ClassesLastPage1(QtWidgets.QWizardPage):
-    def __init__(self, *args, **kwargs):
-        super(ClassesLastPage1, self).__init__(*args, **kwargs)
+        global res10
+        res10 = float(res1) + float(res2) + float(res3) + float(res4) + float(res5) + float(
+            res6) + float(res7) + float(res8) + float(res9)
+        res10 = res10 / 9
 
-        font = QtGui.QFont()
-        font.setFamily("Sitka")
-        font.setPointSize(14)
-        self.setFont(font)
-
-        self.label_74 = QtWidgets.QLabel("Итоговые расчеты оценки", self)
-        self.label_74.setAlignment(Qt.AlignCenter)
-        self.label_75 = QtWidgets.QLabel("\n\n\n\nРасчет средней оценки за все направления:", self)
-        self.label_75.setAlignment(Qt.AlignBottom)
-
-        self.label_80 = QtWidgets.QLabel('\n\n\n\n\nНаправление I: ')
-        self.text_1 = QtWidgets.QLineEdit(self)
-        self.text_1.setFixedWidth(130)
-        self.text_1.setMaxLength(4)
-        self.text_1.setStyleSheet("font: Sitka; font-size: 15")
-        self.label_81 = QtWidgets.QLabel('Направление II: ')
-        self.text_2 = QtWidgets.QLineEdit(self)
-        self.text_2.setFixedWidth(130)
-        self.text_2.setMaxLength(4)
-        self.text_2.setStyleSheet("font: Sitka; font-size: 15")
-        self.label_82 = QtWidgets.QLabel('Направление III: ')
-        self.text_3 = QtWidgets.QLineEdit(self)
-        self.text_3.setFixedWidth(130)
-        self.text_3.setMaxLength(4)
-        self.text_3.setStyleSheet("font: Sitka; font-size: 15")
-        self.label_83 = QtWidgets.QLabel('Направление IV: ')
-        self.text_4 = QtWidgets.QLineEdit(self)
-        self.text_4.setFixedWidth(130)
-        self.text_4.setMaxLength(4)
-        self.text_4.setStyleSheet("font: Sitka; font-size: 15")
-        self.label_84 = QtWidgets.QLabel('\n\n\n\n\n\n\n\n')
-        self.button = QPushButton('Показать', self)
-        self.button.setFixedWidth(130)
-        self.button.setFixedHeight(22)
-        self.button.setStyleSheet("border: 1px solid gray;")
-
-        self.label_res = QtWidgets.QLabel('\nСредняя оценка за все направления: ')
-
-        self.layout = QtWidgets.QVBoxLayout()
-        self.layout.addWidget(self.label_74)
-        self.layout.addWidget(self.label_75)
-        self.layout.addWidget(self.label_80)
-        self.layout.addWidget(self.text_1)
-        self.layout.addWidget(self.label_81)
-        self.layout.addWidget(self.text_2)
-        self.layout.addWidget(self.label_82)
-        self.layout.addWidget(self.text_3)
-        self.layout.addWidget(self.label_83)
-        self.layout.addWidget(self.text_4)
-        self.layout.addWidget(self.label_84)
-        self.layout.addWidget(self.button)
-        self.layout.addWidget(self.label_res)
-        self.setLayout(self.layout)
-
-        self.button.clicked.connect(self.on_click)
-
-    def on_click(self):
-        value_1 = self.text_1.text()
-        value_2 = self.text_2.text()
-        value_3 = self.text_3.text()
-        value_4 = self.text_4.text()
-
-        res = (float(value_1) + float(value_2) + float(value_3) + float(value_4)) / 4
-        if res > 1 or res < 0:
-            self.label_res.setText('\nОшибка ввода!')
-        elif res == 1:
-            self.label_res.setText('\nСредняя оценка за все направления: 1')
-        elif res == 0:
-            self.label_res.setText('\nСредняя оценка за все направления: 0')
-        else:
-            self.label_res.setText('\nСредняя оценка за все направления: ' + str(res))
-
-    def nextId(self):
         return Wizard.classLastPage2
+
 
 # итоговые расчеты
 class ClassesLastPage2(QtWidgets.QWizardPage):
@@ -1403,83 +1042,21 @@ class ClassesLastPage2(QtWidgets.QWizardPage):
         font.setPointSize(14)
         self.setFont(font)
 
-        self.label_74 = QtWidgets.QLabel('Итоговые расчеты оценки', self)
+        self.label_74 = QtWidgets.QLabel('Итоговые расчеты оценки\n\n\n', self)
         self.label_74.setAlignment(Qt.AlignCenter)
 
-        self.label_80 = QtWidgets.QLabel('\n\nСредняя оценка за Процесс I: ')
-        self.text_1 = QtWidgets.QLineEdit(self)
-        self.text_1.setFixedWidth(130)
-        self.text_1.setMaxLength(6)
-        self.text_1.setStyleSheet("font: Sitka; font-size: 15")
-        self.label_81 = QtWidgets.QLabel('Средняя оценка за Процесс II: ')
-        self.text_2 = QtWidgets.QLineEdit(self)
-        self.text_2.setFixedWidth(130)
-        self.text_2.setMaxLength(6)
-        self.text_2.setStyleSheet("font: Sitka; font-size: 15")
-        self.label_82 = QtWidgets.QLabel('Оценка за Процесс III: ')
-        self.text_3 = QtWidgets.QLineEdit(self)
-        self.text_3.setFixedWidth(130)
-        self.text_3.setMaxLength(6)
-        self.text_3.setStyleSheet("font: Sitka; font-size: 15")
-        self.label_83 = QtWidgets.QLabel('Оценка за Процесс IV: ')
-        self.text_4 = QtWidgets.QLineEdit(self)
-        self.text_4.setFixedWidth(130)
-        self.text_4.setMaxLength(6)
-        self.text_4.setStyleSheet("font: Sitka; font-size: 15")
-        self.label_84 = QtWidgets.QLabel('Оценка за Процесс V: ')
-        self.text_5 = QtWidgets.QLineEdit(self)
-        self.text_5.setFixedWidth(130)
-        self.text_5.setMaxLength(6)
-        self.text_5.setStyleSheet("font: Sitka; font-size: 15")
-        self.label_85 = QtWidgets.QLabel('Средняя оценка за Процесс VI: ')
-        self.text_6 = QtWidgets.QLineEdit(self)
-        self.text_6.setFixedWidth(130)
-        self.text_6.setMaxLength(6)
-        self.text_6.setStyleSheet("font: Sitka; font-size: 15")
-        self.label_86 = QtWidgets.QLabel('Оценка за Процесс VII: ')
-        self.text_7 = QtWidgets.QLineEdit(self)
-        self.text_7.setFixedWidth(130)
-        self.text_7.setMaxLength(6)
-        self.text_7.setStyleSheet("font: Sitka; font-size: 15")
-        self.label_87 = QtWidgets.QLabel('Оценка за Процесс VIII: ')
-        self.text_8 = QtWidgets.QLineEdit(self)
-        self.text_8.setFixedWidth(130)
-        self.text_8.setMaxLength(6)
-        self.text_8.setStyleSheet("font: Sitka; font-size: 15")
-        self.label_88 = QtWidgets.QLabel('Оценка за все направления: ')
-        self.text_9 = QtWidgets.QLineEdit(self)
-        self.text_9.setFixedWidth(130)
-        self.text_9.setMaxLength(6)
-        self.text_9.setStyleSheet("font: Sitka; font-size: 15")
-        self.label_89 = QtWidgets.QLabel('\n\n')
+        self.label_75 = QtWidgets.QLabel('Итоговая оценка защищенности информационной системы:\n', self)
+        self.label_75.setAlignment(Qt.AlignBottom)
         self.button = QPushButton('Показать', self)
         self.button.setFixedWidth(130)
         self.button.setFixedHeight(22)
         self.button.setStyleSheet("border: 1px solid gray;")
 
-        self.label_res = QtWidgets.QLabel('\nИтоговая оценка защищенности информационной системы: ')
+        self.label_res = QtWidgets.QLabel('\n\n')
 
         self.layout = QtWidgets.QVBoxLayout()
         self.layout.addWidget(self.label_74)
-        self.layout.addWidget(self.label_80)
-        self.layout.addWidget(self.text_1)
-        self.layout.addWidget(self.label_81)
-        self.layout.addWidget(self.text_2)
-        self.layout.addWidget(self.label_82)
-        self.layout.addWidget(self.text_3)
-        self.layout.addWidget(self.label_83)
-        self.layout.addWidget(self.text_4)
-        self.layout.addWidget(self.label_84)
-        self.layout.addWidget(self.text_5)
-        self.layout.addWidget(self.label_85)
-        self.layout.addWidget(self.text_6)
-        self.layout.addWidget(self.label_86)
-        self.layout.addWidget(self.text_7)
-        self.layout.addWidget(self.label_87)
-        self.layout.addWidget(self.text_8)
-        self.layout.addWidget(self.label_88)
-        self.layout.addWidget(self.text_9)
-        self.layout.addWidget(self.label_89)
+        self.layout.addWidget(self.label_75)
         self.layout.addWidget(self.button)
         self.layout.addWidget(self.label_res)
         self.setLayout(self.layout)
@@ -1487,75 +1064,44 @@ class ClassesLastPage2(QtWidgets.QWizardPage):
         self.button.clicked.connect(self.on_click)
 
     def on_click(self):
-        value_1 = self.text_1.text()
-        value_2 = self.text_2.text()
-        value_3 = self.text_3.text()
-        value_4 = self.text_4.text()
-        value_5 = self.text_5.text()
-        value_6 = self.text_6.text()
-        value_7 = self.text_7.text()
-        value_8 = self.text_8.text()
-        value_9 = self.text_9.text()
-
-        if float(value_1) > 1 or float(value_1) < 0:
-            self.label_res.setText('\nОшибка ввода!')
-        elif float(value_2) > 1 or float(value_2) < 0:
-            self.label_res.setText('\nОшибка ввода!')
-        elif float(value_3) > 1 or float(value_3) < 0:
-            self.label_res.setText('\nОшибка ввода!')
-        elif float(value_4) > 1 or float(value_4) < 0:
-            self.label_res.setText('\nОшибка ввода!')
-        elif float(value_5) > 1 or float(value_5) < 0:
-            self.label_res.setText('\nОшибка ввода!')
-        elif float(value_6) > 1 or float(value_6) < 0:
-            self.label_res.setText('\nОшибка ввода!')
-        elif float(value_7) > 1 or float(value_7) < 0:
-            self.label_res.setText('\nОшибка ввода!')
-        elif float(value_8) > 1 or float(value_8) < 0:
-            self.label_res.setText('\nОшибка ввода!')
-        elif float(value_9) > 1 or float(value_9) < 0:
-            self.label_res.setText('\nОшибка ввода!')
-        else:
-            res = float(value_1) + float(value_2) + float(value_3) + float(value_4) + float(value_5) + float(
-                value_6) + float(value_7) + float(value_8) + float(value_9)
-            res = res / 9
-            if res < 0 or res > 1:
-                self.label_res.setText('\nОшибка ввода!')
-            elif res == 1:
-                self.label_res.setText(
-                    '\nИтоговая оценка защищенности информационной системы: 1 — ПЯТЫЙ УРОВЕНЬ СООТВЕТСТВИЯ')
-                self.label_res.setStyleSheet("color: rgb(0, 197, 0)")
-            elif res == 0:
-                self.label_res.setText(
-                    '\nИтоговая оценка защищенности информационной системы: 0 — НУЛЕВОЙ УРОВЕНЬ СООТВЕТСТВИЯ')
-                self.label_res.setStyleSheet("color: rgb(255, 0, 0)")
-            elif 0 < res <= 0.5:
-                self.label_res.setText('\nИтоговая оценка защищенности информационной системы: ' + str(
-                    round(res, 2)) + ' — ПЕРВЫЙ УРОВЕНЬ СООТВЕТСТВИЯ')
-                self.label_res.setStyleSheet("color: rgb(235, 87, 0)")
-            elif 0.5 < res <= 0.7:
-                self.label_res.setText('\nИтоговая оценка защищенности информационной системы: ' + str(
-                    round(res, 2)) + ' — ВТОРОЙ УРОВЕНЬ СООТВЕТСТВИЯ')
-                self.label_res.setStyleSheet("color: rgb(255, 128, 0)")
-            elif 0.7 < res <= 0.85:
-                self.label_res.setText('\nИтоговая оценка защищенности информационной системы: ' + str(
-                    round(res, 2)) + ' — ТРЕТИЙ УРОВЕНЬ СООТВЕТСТВИЯ')
-                self.label_res.setStyleSheet("color: rgb(255, 255, 0)")
-            elif 0.85 < res <= 0.9:
-                self.label_res.setText('\nИтоговая оценка защищенности информационной системы: ' + str(
-                    round(res, 2)) + ' — ЧЕТВЕРТЫЙ УРОВЕНЬ СООТВЕТСТВИЯ')
-                self.label_res.setStyleSheet("color: rgb(102, 255, 0)")
-            elif 0.9 < res < 1:
-                self.label_res.setText('\nИтоговая оценка защищенности информационной системы: ' + str(
-                    round(res, 2)) + ' — ПЯТЫЙ УРОВЕНЬ СООТВЕТСТВИЯ')
-                self.label_res.setStyleSheet("color: rgb(0, 197, 0)")
+        
+        if res10 == 1:
+            self.label_res.setText(
+                '\n1 — ПЯТЫЙ УРОВЕНЬ СООТВЕТСТВИЯ')
+            self.label_res.setStyleSheet("color: rgb(0, 197, 0)")
+        elif res10 == 0:
+            self.label_res.setText(
+                '\n0 — НУЛЕВОЙ УРОВЕНЬ СООТВЕТСТВИЯ')
+            self.label_res.setStyleSheet("color: rgb(255, 0, 0)")
+        elif 0 < res10 <= 0.5:
+            self.label_res.setText('\n' + str(
+                round(res10, 2)) + ' — ПЕРВЫЙ УРОВЕНЬ СООТВЕТСТВИЯ')
+            self.label_res.setStyleSheet("color: rgb(235, 87, 0)")
+        elif 0.5 < res10 <= 0.7:
+            self.label_res.setText('\n' + str(
+                round(res10, 2)) + ' — ВТОРОЙ УРОВЕНЬ СООТВЕТСТВИЯ')
+            self.label_res.setStyleSheet("color: rgb(255, 128, 0)")
+        elif 0.7 < res10 <= 0.85:
+            self.label_res.setText('\n' + str(
+                round(res10, 2)) + ' — ТРЕТИЙ УРОВЕНЬ СООТВЕТСТВИЯ')
+            self.label_res.setStyleSheet("color: rgb(255, 255, 0)")
+        elif 0.85 < res10 <= 0.9:
+            self.label_res.setText('\n' + str(
+                round(res10, 2)) + ' — ЧЕТВЕРТЫЙ УРОВЕНЬ СООТВЕТСТВИЯ')
+            self.label_res.setStyleSheet("color: rgb(102, 255, 0)")
+        elif 0.9 < res10 < 1:
+            self.label_res.setText('\n' + str(
+                round(res10, 2)) + ' — ПЯТЫЙ УРОВЕНЬ СООТВЕТСТВИЯ')
+            self.label_res.setStyleSheet("color: rgb(0, 197, 0)")
 
     def nextId(self):
         return Wizard.classLastPage2
 
 class Wizard(QtWidgets.QWizard):
-    num_of_pages = 28
-    (intro, class1, class2, class3, class4, class5, class6, class7, class8, class9, class10, class11, class12, class13, class14, class15, class16, class17, class18, class19, class20, class21, classDirection1, classDirection2, classDirection3, classDirection4, classLastPage1, classLastPage2) = range(num_of_pages)
+    num_of_pages = 27
+    (intro, class1, class2, class3, class4, class5, class6, class7, class8, class9, class10, class11, class12, class13,
+     class14, class15, class16, class17, class18, class19, class20, class21, classDirection1, classDirection2, classDirection3,
+     classDirection4, classLastPage2) = range(num_of_pages)
 
     def __init__(self, *args, **kwargs):
         super(Wizard, self).__init__(*args, **kwargs)
@@ -1579,7 +1125,6 @@ class Wizard(QtWidgets.QWizard):
         self.setPage(self.classDirection2, ClassesDirection2(self))
         self.setPage(self.classDirection3, ClassesDirection3(self))
         self.setPage(self.classDirection4, ClassesDirection4(self))
-        self.setPage(self.classLastPage1, ClassesLastPage1(self))
         self.setPage(self.classLastPage2, ClassesLastPage2(self))
         self.setStartId(self.intro)
 
@@ -1619,6 +1164,13 @@ QPushButton {
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
+
+    pp1, pp2, pp3, pp4 = 0, 0, 0, 0
+    p2p1, p2p2, p2p3, p2p4 = 0, 0, 0, 0
+    p6p1, p6p2 = 0, 0
+    n1, n2, n3, n4 = 0, 0, 0, 0
+
+    res1, res2, res3, res4, res5, res6, res7, res8, res9, res10 = 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 
     app.setStyle("Sitka")
     app.setStyleSheet(StyleSheet)
